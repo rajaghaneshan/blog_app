@@ -1,3 +1,4 @@
+import 'package:blog_app/blog/model/blog_model.dart';
 import 'package:blog_app/constants.dart';
 import 'package:blog_app/home/controller/home_controller.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -95,7 +96,8 @@ class _FeedScreenState extends State<FeedScreen> {
                               controller: scrollController,
                               shrinkWrap: true,
                               itemBuilder: (context, index) {
-                                var data = snapshot.data!.docs[index];
+                                BlogModel data = BlogModel.fromDocument(
+                                    snapshot.data!.docs[index]);
                                 return BlogPostCard(data: data);
                               },
                             );
@@ -120,7 +122,8 @@ class _FeedScreenState extends State<FeedScreen> {
                                   controller: scrollController,
                                   shrinkWrap: true,
                                   itemBuilder: (context, index) {
-                                    var data = snapshot.data!.docs[index];
+                                    BlogModel data = BlogModel.fromDocument(
+                                        snapshot.data!.docs[index]);
                                     return BlogPostCard(data: data);
                                   },
                                 );
@@ -144,7 +147,9 @@ class _FeedScreenState extends State<FeedScreen> {
                                   controller: scrollController,
                                   shrinkWrap: true,
                                   itemBuilder: (context, index) {
-                                    var data = snapshot.data!.docs[index];
+                                    BlogModel data = BlogModel.fromDocument(
+                                        snapshot.data!.docs[index]);
+                                    
                                     return BlogPostCard(data: data);
                                   },
                                 );

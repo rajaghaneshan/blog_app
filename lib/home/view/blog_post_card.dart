@@ -1,10 +1,12 @@
 import 'package:blog_app/app_theme.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:blog_app/blog/model/blog_model.dart';
+import 'package:blog_app/blog/view/blog_screen.dart';
+import 'package:blog_app/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class BlogPostCard extends StatelessWidget {
-  final QueryDocumentSnapshot data;
+  final BlogModel data;
   const BlogPostCard({
     Key? key,
     required this.data,
@@ -12,12 +14,19 @@ class BlogPostCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    DateTime time = data['timestamp'].toDate();
+    DateTime time = data.timestamp.toDate();
     var formatter = DateFormat.yMMMMd();
     var formattedTime = formatter.format(time).toString();
     print(formattedTime);
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => BlogScreen(blogId: data.blogId),
+          ),
+        );
+      },
       child: Container(
         margin: EdgeInsets.symmetric(vertical: 10.0),
         padding: EdgeInsets.only(bottom: 10.0),
@@ -44,9 +53,7 @@ class BlogPostCard extends StatelessWidget {
                 borderRadius: BorderRadius.circular(10.0),
                 image: DecorationImage(
                   image: NetworkImage(
-                    data['image'] != ""
-                        ? data['image']
-                        : 'http://via.placeholder.com/300x150',
+                    data.image != "" ? data.image : placeholderImage,
                   ),
                   fit: BoxFit.cover,
                 ),
@@ -55,7 +62,7 @@ class BlogPostCard extends StatelessWidget {
             Padding(
               padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 5.0),
               child: Text(
-                '${data["title"]}',
+                '${data.title}',
                 style: AppTheme.cardTitleText,
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
@@ -66,7 +73,7 @@ class BlogPostCard extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('Author'),
+                  Text(''),
                   Text(formattedTime.toString()),
                 ],
               ),

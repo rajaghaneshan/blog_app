@@ -8,3 +8,4 @@ final googleSignIn = GoogleSignIn();
 final usersRef = FirebaseFirestore.instance.collection('users');
 final blogsRef = FirebaseFirestore.instance.collection('blogs');
 final firebaseAuth = FirebaseAuth.instance;
+const String placeholderImage = 'http://via.placeholder.com/300x150';

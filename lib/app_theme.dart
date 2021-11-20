@@ -44,6 +44,22 @@ class AppTheme {
       fontSize: 15,
     ),
   );
+  static TextStyle blogTitle = GoogleFonts.lato(
+    textStyle: TextStyle(
+      color: Colors.black,
+      fontWeight: FontWeight.w700,
+      height: 1.2,
+      fontSize: 22,
+    ),
+  );
+  static TextStyle blogContent = GoogleFonts.lato(
+    textStyle: TextStyle(
+      color: Colors.black87,
+      fontWeight: FontWeight.w400,
+      height: 1.2,
+      fontSize: 14,
+    ),
+  );
 
   static InputDecoration textFieldDecoration = InputDecoration(
     focusedBorder: OutlineInputBorder(
